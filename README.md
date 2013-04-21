@@ -16,7 +16,7 @@ A simple c# client library for [statsd.net](https://github.com/lukevenediger/sta
 * Output to an HTTP endpoint
 
 # Installation via Nuget
-Install the StatsdCsharpClient via nuget:
+Install the [StatsdCsharpClient](https://nuget.org/packages/StatsdCsharpClient/) via nuget:
 ```bash
 PM> Install-Package StatsdCsharpClient
 ```
@@ -66,3 +66,4 @@ Luke Venediger - lukev@lukev.net
 * [statsd.net](https://github.com/lukevenediger/statsd.net/) 
 * [statsd](https://github.com/etsy/statsd)
 * [graphite](https://github.com/graphite-project)
+* [StatsdCsharpClient on nuget.org](https://nuget.org/packages/StatsdCsharpClient/)
