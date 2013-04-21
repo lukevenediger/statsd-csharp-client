@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>StatsdCsharpClient</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Luke Venediger</authors>
+    <owners>Luke Venediger</owners>
+    <projectUrl>https://github.com/lukevenediger/statsd-csharp-client/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>First release of the statsd c# client.</releaseNotes>
+    <copyright>Copyright 2013 Luke Venediger</copyright>
+    <tags>statsd statsd.net graphite</tags>
+  </metadata>
+</package>

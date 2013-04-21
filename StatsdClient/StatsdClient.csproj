@@ -49,7 +49,9 @@
     <Compile Include="StatsdClientExtensions.cs" />
     <Compile Include="TimingToken.cs" />
     <Compile Include="UdpOutputChannel.cs" />
-    <Compile Include="_.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="StatsdClient.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

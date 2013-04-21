@@ -11,29 +11,39 @@ A simple c# client library for [statsd.net](https://github.com/lukevenediger/sta
 * Supports a user-defined prefix to prepend to every metric
 
 ## Coming soon
+* Support for sets and count sampling
 * batch-and-pump - collecting stats and sending them out in a batch at regular intervals
 * Output to an HTTP endpoint
 
-## Usage
-
-Create an instance of StatsdClient to get started:
+## Quickstart
+Assuming your statsd.net server is running on localhost and listening on port 12000:
 ```csharp
-var statsd = new StatsdClient(
-
-You can specify your metrics as a string:
-```csharp
+var statsd = new StatsdClient("localhost", 12000);
+// Log a count
 statsd.LogCount( "site.hits" );
-statsd.LogTiming( "site.pageLoad", 100 /* milliseconds */ );
+// Log a gauge
 statsd.LogGauge( "site.activeUsers", numActiveUsers );
+// Log a timing
+statsd.LogTiming( "site.pageLoad", 100 /* milliseconds */ );
 ```
 
-You can also use the dynamic stats builder:
-
+You can also wrap your code in a `using` block to measure the latency:
 ```csharp
-_.count.site.hits + 1 > statsd;
-_.timing.site.pageLoad + 100 > statsd;
-_.gauge.site.activeUsers + numActiveUsers > statsd;
-'''
+using (statsd.LogTiming( "site.db.fetchReport" ))
+{
+  // do some work
+}
+// At this point your latency has been sent to the server
+```
 
-[statsd]: https://github.com/etsy/statsd
-[statsd.net]: https://github.com/lukevenediger/statsd.net
+## Dynamic Stats Builder
+There's also a nifty set of extension methods that let you define your stats without using strings. Using the example provided above, but now using the builder:
+```csharp
+var statsd = new StatsdClient("localhost", 12000);
+// Log a count
+statsd.count.site.hits += 1;
+// Log a gauge
+statsd.gauge.site.activeUsers += numActiveUsers;
+// Log a timing
+statsd.site.pageLoad += 100; /* milliseconds */
+```
