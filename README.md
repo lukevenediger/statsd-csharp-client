@@ -10,7 +10,7 @@ A simple c# client library for [statsd.net](https://github.com/lukevenediger/sta
 * Allows for customisation of every output stat to do things like screen metrics before sending
 * Supports a user-defined prefix to prepend to every metric
 
-## Coming soon
+Coming soon:
 * Support for sets and count sampling
 * batch-and-pump - collecting stats and sending them out in a batch at regular intervals
 * Output to an HTTP endpoint
