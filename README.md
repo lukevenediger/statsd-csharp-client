@@ -2,7 +2,7 @@
 
 A simple c# client library for [statsd.net](https://github.com/lukevenediger/statsd.net/) and [statsd](https://github.com/etsy/statsd/).
 
-## Features
+# Features
 * Log counts, timings and gauges
 * Has an additional API that uses dynamics to create and submit stats
 * Fault-tolerant client that can be configured to fail silently (with a warning) if misconfigured
@@ -15,8 +15,14 @@ A simple c# client library for [statsd.net](https://github.com/lukevenediger/sta
 * batch-and-pump - collecting stats and sending them out in a batch at regular intervals
 * Output to an HTTP endpoint
 
-## Quickstart
-Assuming your statsd.net server is running on localhost and listening on port 12000:
+# Installation via Nuget
+Install the StatsdCsharpClient via nuget:
+```bash
+PM> Install-Package StatsdCsharpClient
+```
+
+# Quickstart
+Assuming your server is running on localhost and listening on port 12000:
 ```csharp
 var statsd = new StatsdClient("localhost", 12000);
 // Log a count
@@ -47,3 +53,16 @@ statsd.gauge.site.activeUsers += numActiveUsers;
 // Log a timing
 statsd.site.pageLoad += 100; /* milliseconds */
 ```
+
+# Project Information
+
+## Target Runtimes
+* .Net 4.5
+
+## Authors
+Luke Venediger - lukev@lukev.net
+
+## See Also
+* [statsd.net](https://github.com/lukevenediger/statsd.net/) 
+* [statsd](https://github.com/etsy/statsd)
+* [graphite](https://github.com/graphite-project)
