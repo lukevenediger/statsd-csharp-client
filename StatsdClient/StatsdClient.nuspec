@@ -7,7 +7,6 @@
     <authors>Luke Venediger</authors>
     <owners>Luke Venediger</owners>
     <projectUrl>https://github.com/lukevenediger/statsd-csharp-client/</projectUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
 	<summary>A simple c# client library for statsd and statsd.net</summary>
     <description>
 		The simple statsd client for .Net is a robust, easy-to-use way of feeding metrics into a statsd-compatible server. You can use it to log counts, timings and gauges.
