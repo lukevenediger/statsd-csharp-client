@@ -10,19 +10,36 @@ namespace StatsdClient
 {
   public static class StatsdExtensions
   {
+    /// <summary>
+    /// Start logging a count
+    /// </summary>
     public static dynamic count(this IStatsd statsd)
     {
       return new StatsBuilderInternal(statsd, MetricType.COUNT);
     }
 
+    /// <summary>
+    /// Start logging a timing / latency
+    /// </summary>
     public static dynamic timing(this IStatsd statsd)
     {
       return new StatsBuilderInternal(statsd, MetricType.TIMING);
     }
 
+    /// <summary>
+    /// Start logging a gauge
+    /// </summary>
     public static dynamic gauge(this IStatsd statsd)
     {
       return new StatsBuilderInternal(statsd, MetricType.GAUGE);
+    }
+
+    /// <summary>
+    /// Start logging a set
+    /// </summary>
+    public static dynamic set(this IStatsd statsd)
+    {
+      return new StatsBuilderInternal(statsd, MetricType.SET);
     }
 
     private class StatsBuilderInternal : DynamicObject
@@ -81,6 +98,9 @@ namespace StatsdClient
               break;
             case MetricType.TIMING:
               _statsd.LogTiming(name, quantity);
+              break;
+            case MetricType.SET:
+              _statsd.LogSet(name, quantity);
               break;
           }
           result = null;

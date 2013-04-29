@@ -56,6 +56,11 @@ namespace StatsdClient
       SendMetric(MetricType.GAUGE, name, _prefix, value);
     }
 
+    public void LogSet(string name, int value)
+    {
+      SendMetric(MetricType.SET, name, _prefix, value);
+    }
+
     private void SendMetric(string metricType, string name, string prefix, int value)
     {
       if (String.IsNullOrEmpty(name))
