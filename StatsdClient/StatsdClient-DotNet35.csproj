@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D9C7B372-074B-4649-B45E-01FE10724AF9}</ProjectGuid>
+    <ProjectGuid>{BD729A99-C965-40F3-A69B-EFC81D6DA023}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>StatsdClient</RootNamespace>
     <AssemblyName>StatsdClient</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,18 +25,17 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\Nuget Releases\lib\net45\</OutputPath>
+    <OutputPath>..\Nuget Releases\lib\net35\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\Nuget Releases\lib\net45\StatsdClient.XML</DocumentationFile>
+    <DocumentationFile>..\Nuget Releases\lib\net35\StatsdClient.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -45,11 +45,13 @@
     <Compile Include="MetricType.cs" />
     <Compile Include="NullOutputChannel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StatsdExtensions.cs" />
     <Compile Include="Statsd.cs" />
     <Compile Include="StatsdClientExtensions.cs" />
     <Compile Include="TimingToken.cs" />
     <Compile Include="UdpOutputChannel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="StatsdClient.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

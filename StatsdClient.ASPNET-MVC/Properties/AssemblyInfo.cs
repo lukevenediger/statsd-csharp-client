@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("StatsdClient")]
-[assembly: AssemblyDescription("A statsd.net and statsd client for c#")]
+[assembly: AssemblyTitle("StatsdClient.ASPNET-MVC")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Luke Venediger")]
-[assembly: AssemblyProduct("StatsdClient")]
-[assembly: AssemblyCopyright("Copyright © Luke Venediger 2013")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("StatsdClient.ASPNET-MVC")]
+[assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("8ac00668-c22c-4335-bc35-fc310f50d42a")]
+[assembly: Guid("6c5d32a9-970e-4c4e-88e6-f57b3f219da0")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.1.0")]
-[assembly: AssemblyFileVersion("1.0.1.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

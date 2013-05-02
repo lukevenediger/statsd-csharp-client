@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace StatsdClient
 {
@@ -49,6 +48,11 @@ namespace StatsdClient
     public void LogTiming(string name, int milliseconds)
     {
       SendMetric(MetricType.TIMING, name, _prefix, milliseconds);
+    }
+
+    public void LogTiming(string name, long milliseconds)
+    {
+      LogTiming(name, (int)milliseconds);
     }
 
     public void LogGauge(string name, int value)

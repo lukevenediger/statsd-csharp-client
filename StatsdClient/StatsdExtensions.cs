@@ -4,10 +4,12 @@ using System.Dynamic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace StatsdClient
 {
+  /// <summary>
+  /// A set of extensions for building up metrics using dynamic objects.
+  /// </summary>
   public static class StatsdExtensions
   {
     /// <summary>

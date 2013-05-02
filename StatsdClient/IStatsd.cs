@@ -16,6 +16,10 @@ namespace StatsdClient
     /// </summary>
     void LogTiming(string name, int milliseconds);
     /// <summary>
+    /// Log a latency / Timing
+    /// </summary>
+    void LogTiming(string name, long milliseconds);
+    /// <summary>
     /// Log the number of unique occurrances of something
     /// </summary>
     /// <param name="name"></param>
