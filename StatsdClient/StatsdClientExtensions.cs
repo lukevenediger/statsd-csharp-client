@@ -5,6 +5,9 @@ using System.Text;
 
 namespace StatsdClient
 {
+  /// <summary>
+  /// A set of extensions for use with the StatsdClient library.
+  /// </summary>
   public static class StatsdClientExtensions
   {
     /// <summary>

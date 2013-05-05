@@ -5,11 +5,26 @@ using System.Text;
 
 namespace StatsdClient
 {
+  /// <summary>
+  /// A list of metric types that statsd.net supports
+  /// </summary>
   public static class MetricType
   {
+    /// <summary>
+    /// The number of times something happened.
+    /// </summary>
     public const string COUNT = "c";
+    /// <summary>
+    /// The time it took for something to happen.
+    /// </summary>
     public const string TIMING = "ms";
+    /// <summary>
+    /// The value of some measurement at this very moment.
+    /// </summary>
     public const string GAUGE = "g";
+    /// <summary>
+    /// The number of times each event has been seen.
+    /// </summary>
     public const string SET = "s";
   }
 }

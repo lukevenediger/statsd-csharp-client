@@ -6,6 +6,10 @@ using System.Text;
 
 namespace StatsdClient
 {
+  /// <summary>
+  /// A class that is used to measure a latency wrapped in a using block.
+  /// </summary>
+  [DebuggerDisplay("{_name} - IsActive = {_stopwatch.IsRunning}")]
   public sealed class TimingToken : IDisposable
   {
     private IStatsd _client;
@@ -19,6 +23,9 @@ namespace StatsdClient
       _name = name;
     }
 
+    /// <summary>
+    /// Stops the internal timer and logs a latency metric.
+    /// </summary>
     public void Dispose()
     {
       _stopwatch.Stop();
