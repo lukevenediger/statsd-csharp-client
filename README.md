@@ -57,6 +57,8 @@ statsd.site.pageLoad += 100; /* milliseconds */
 # Project Information
 
 ## Target Runtimes
+* .Net 3.5
+* .Net 4.0
 * .Net 4.5
 
 ## Authors
