@@ -1,6 +1,9 @@
 ﻿using System;
 namespace StatsdClient
 {
+  /// <summary>
+  /// Interface for the statsd.net client
+  /// </summary>
   public interface IStatsd
   {
     /// <summary>

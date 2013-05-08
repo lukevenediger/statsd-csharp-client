@@ -15,6 +15,14 @@ namespace StatsdClient
     private string _prefix;
     private IOutputChannel _outputChannel;
 
+    /// <summary>
+    /// Creates a new instance of the Statsd client.
+    /// </summary>
+    /// <param name="host">The statsd or statsd.net server.</param>
+    /// <param name="port"></param>
+    /// <param name="prefix">A string prefix to prepend to every metric.</param>
+    /// <param name="rethrowOnError">If True, rethrows any exceptions caught due to bad configuration.</param>
+    /// <param name="outputChannel">Optional output channel (useful for mocking / testing).</param>
     public Statsd(string host, int port, string prefix = null, bool rethrowOnError = false, IOutputChannel outputChannel = null)
     {
       _prefix = prefix;
