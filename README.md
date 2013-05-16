@@ -33,8 +33,10 @@ statsd.LogGauge( "site.activeUsers", numActiveUsers );
 statsd.LogTiming( "site.pageLoad", 100 /* milliseconds */ );
 ```
 
-You can also wrap your code in a `using` block to measure the latency:
+You can also wrap your code in a `using` block to measure the latency by using the LogTiming(string) extension method:
 ```csharp
+using StatsdClient;
+...
 using (statsd.LogTiming( "site.db.fetchReport" ))
 {
   // do some work
