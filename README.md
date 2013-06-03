@@ -24,7 +24,9 @@ PM> Install-Package StatsdCsharpClient
 # Quickstart
 Assuming your server is running on localhost and listening on port 12000:
 ```csharp
-var statsd = new StatsdClient("localhost", 12000);
+using StatsdClient;
+...
+var statsd = new Statsd("localhost", 12000);
 // Log a count
 statsd.LogCount( "site.hits" );
 // Log a gauge
