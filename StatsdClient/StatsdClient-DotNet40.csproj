@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectionType.cs" />
     <Compile Include="IOutputChannel.cs" />
     <Compile Include="IStatsd.cs" />
     <Compile Include="MetricType.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="StatsdExtensions.cs" />
     <Compile Include="Statsd.cs" />
     <Compile Include="StatsdClientExtensions.cs" />
+    <Compile Include="TcpOutputChannel.cs" />
     <Compile Include="TimingToken.cs" />
     <Compile Include="UdpOutputChannel.cs" />
   </ItemGroup>

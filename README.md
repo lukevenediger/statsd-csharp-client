@@ -3,19 +3,20 @@
 A simple c# client library for [statsd.net](https://github.com/lukevenediger/statsd.net/) and [statsd](https://github.com/etsy/statsd/).
 
 # Features
-* Log counts, timings and gauges
+* Log counts, timings, gauges and sets
 * Has an additional API that uses dynamics to create and submit stats
 * Fault-tolerant client that can be configured to fail silently (with a warning) if misconfigured
 * IStatsdClient interface for easy mocking in unit tests
 * Allows for customisation of every output stat to do things like screen metrics before sending
 * Supports a user-defined prefix to prepend to every metric
+* Send metrics over a UDP or TCP connection
 
 Coming soon:
 * Support for sets and count sampling
 * batch-and-pump - collecting stats and sending them out in a batch at regular intervals
 * Output to an HTTP endpoint
 
-# Installation via Nuget
+# Download and Install 
 Install the [StatsdCsharpClient](https://nuget.org/packages/StatsdCsharpClient/) via nuget:
 ```bash
 PM> Install-Package StatsdCsharpClient
@@ -53,6 +54,15 @@ statsd.gauge.site.activeUsers += numActiveUsers;
 // Log a timing
 statsd.site.pageLoad += 100; /* milliseconds */
 ```
+
+## TCP Output Channel
+Metrics can be delivered over a TCP connection by specifying ConnectionType.Tcp during construction:
+```csharp
+var statsd = new Statsd("localhost", 12001);
+// Continue as normal
+```
+
+The connection will attempt to reconnect if something goes wrong, and will try three times before giving up. Use the retryOnDisconnect parameter to enable/disable this, and the retryAttempts parameter to specify the number of times to try the request again.
 
 # Project Information
 

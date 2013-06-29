@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>StatsdCsharpClient</id>
-    <version>1.0.1.0</version>
+    <version>1.1.0.0</version>
     <title>Simple Statsd Client for .Net 3.5, 4.0 and 4.5</title>
     <authors>Luke Venediger</authors>
     <owners>Luke Venediger</owners>

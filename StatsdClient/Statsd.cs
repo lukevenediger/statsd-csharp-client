@@ -20,10 +20,60 @@ namespace StatsdClient
     /// </summary>
     /// <param name="host">The statsd or statsd.net server.</param>
     /// <param name="port"></param>
+    public Statsd(string host, int port)
+    {
+      InitialiseInternal(() => new UdpOutputChannel(host, port), "", true);
+    }
+
+    /// <summary>
+    /// Creates a new instance of the Statsd client.
+    /// </summary>
+    /// <param name="host">The statsd or statsd.net server.</param>
+    /// <param name="port"></param>
+    /// <param name="prefix">A string prefix to prepend to every metric.</param>
+    /// <param name="rethrowOnError">If True, rethrows any exceptions caught due to bad configuration.</param>
+    /// <param name="connectionType">Choose between a UDP (recommended) or TCP connection.</param>
+    /// <param name="retryOnDisconnect">Retry the connection if it fails (TCP only).</param>
+    /// <param name="retryAttempts">Number of times to retry before giving up (TCP only).</param>
+    public Statsd(string host, 
+      int port, 
+      ConnectionType connectionType = ConnectionType.Udp, 
+      string prefix = null, 
+      bool rethrowOnError = false,
+      bool retryOnDisconnect = true,
+      int retryAttempts = 3)
+    {
+      InitialiseInternal(() =>
+        {
+          return connectionType == ConnectionType.Tcp
+        ? (IOutputChannel)new TcpOutputChannel(host, port, retryOnDisconnect, retryAttempts)
+        : (IOutputChannel)new UdpOutputChannel(host, port);
+        },
+        prefix,
+        rethrowOnError);
+    }
+
+    /// <summary>
+    /// Creates a new instance of the Statsd client.
+    /// </summary>
+    /// <param name="host">The statsd or statsd.net server.</param>
+    /// <param name="port"></param>
     /// <param name="prefix">A string prefix to prepend to every metric.</param>
     /// <param name="rethrowOnError">If True, rethrows any exceptions caught due to bad configuration.</param>
     /// <param name="outputChannel">Optional output channel (useful for mocking / testing).</param>
     public Statsd(string host, int port, string prefix = null, bool rethrowOnError = false, IOutputChannel outputChannel = null)
+    {
+      if (outputChannel == null)
+      {
+        InitialiseInternal(() => new UdpOutputChannel(host, port), prefix, rethrowOnError);
+      }
+      else
+      {
+        InitialiseInternal(() => outputChannel, prefix, rethrowOnError);
+      }
+    }
+
+    private void InitialiseInternal(Func<IOutputChannel> createOutputChannel, string prefix, bool rethrowOnError)
     {
       _prefix = prefix;
       if (_prefix != null && _prefix.EndsWith("."))
@@ -32,14 +82,7 @@ namespace StatsdClient
       }
       try
       {
-        if (outputChannel != null)
-        {
-          _outputChannel = outputChannel;
-        }
-        else 
-        {
-          _outputChannel = new UdpOutputChannel(host, port);
-        }
+        _outputChannel = createOutputChannel();
       }
       catch (Exception ex)
       {
@@ -47,7 +90,7 @@ namespace StatsdClient
         {
           throw;
         }
-        Trace.TraceError("Could not initialise the Statsd client at {0}:{1} - {2}", host, port, ex.Message);
+        Trace.TraceError("Could not initialise the Statsd client: {2} - falling back to NullOutputChannel.", ex.Message);
         _outputChannel = new NullOutputChannel();
       }
     }
