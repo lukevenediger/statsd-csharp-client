@@ -25,7 +25,9 @@ PM> Install-Package StatsdCsharpClient
 # Quickstart
 Assuming your server is running on localhost and listening on port 12000:
 ```csharp
-var statsd = new StatsdClient("localhost", 12000);
+using StatsdClient;
+...
+var statsd = new Statsd("localhost", 12000);
 // Log a count
 statsd.LogCount( "site.hits" );
 // Log a gauge
@@ -34,8 +36,10 @@ statsd.LogGauge( "site.activeUsers", numActiveUsers );
 statsd.LogTiming( "site.pageLoad", 100 /* milliseconds */ );
 ```
 
-You can also wrap your code in a `using` block to measure the latency:
+You can also wrap your code in a `using` block to measure the latency by using the LogTiming(string) extension method:
 ```csharp
+using StatsdClient;
+...
 using (statsd.LogTiming( "site.db.fetchReport" ))
 {
   // do some work
