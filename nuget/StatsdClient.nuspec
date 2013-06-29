@@ -27,8 +27,7 @@
     Licence: MIT
 	</description>
     <releaseNotes>
-      Maintenance Release:
-      * Added support for .net 3.5 and .net 4.0 users
+      * Added a TCP Output Channel
     </releaseNotes>
 	<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	<copyright>Copyright 2013 Luke Venediger</copyright>
