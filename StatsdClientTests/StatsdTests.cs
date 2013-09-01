@@ -116,5 +116,27 @@ namespace StatsdClientTests
 
       _outputChannel.VerifyAll();
     }
+
+    [TestMethod]
+    public void LogCount_NullPrefix_DoesNotStartNameWithPeriod()
+    {
+      var statsd = new Statsd("localhost", 12000, prefix : null, outputChannel : _outputChannel.Object);
+      var inputStat = "some.stat:1|c";
+      _outputChannel.Setup(p => p.Send(It.Is<string>(q => q == inputStat)))
+        .Verifiable();
+      statsd.LogCount("some.stat");
+      _outputChannel.VerifyAll();
+    }
+
+    [TestMethod]
+    public void LogCount_EmptyStringPrefix_DoesNotStartNameWithPeriod()
+    {
+      var statsd = new Statsd("localhost", 12000, prefix : "", outputChannel : _outputChannel.Object);
+      var inputStat = "some.stat:1|c";
+      _outputChannel.Setup(p => p.Send(It.Is<string>(q => q == inputStat)))
+        .Verifiable();
+      statsd.LogCount("some.stat");
+      _outputChannel.VerifyAll();
+    }
   }
 }

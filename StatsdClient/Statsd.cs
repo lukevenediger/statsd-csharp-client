@@ -170,7 +170,9 @@ namespace StatsdClient
     /// <returns>The formatted metric</returns>
     protected virtual string PrepareMetric(string metricType, string name, string prefix, int value)
     {
-      return (prefix != null ? (prefix + "." + name) : name) + ":" + value + "|" + metricType;
+      return (String.IsNullOrEmpty(prefix) ? name :  (prefix + "." + name)) 
+        + ":" + value 
+        + "|" + metricType;
     }
   }
 }
