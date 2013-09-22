@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>StatsdCsharpClient</id>
-    <version>1.1.0.0</version>
+    <version>1.2.0.0</version>
     <title>Simple Statsd Client for .Net 3.5, 4.0 and 4.5</title>
     <authors>Luke Venediger</authors>
     <owners>Luke Venediger</owners>
@@ -12,7 +12,7 @@
 		The simple statsd client for .Net is a robust, easy-to-use way of feeding metrics into a statsd-compatible server. You can use it to log counts, timings and gauges.
 		
 		Features include:
-		* Log counts, timings, gauges and sets
+		* Log counts, timings, gauges, sets and raw metrics
 		* Has an additional API that uses dynamics to create and submit stats
 		* Fault-tolerant client that can be configured to fail silently (with a warning) if misconfigured
 		* IStatsdClient interface for easy mocking in unit tests
@@ -27,10 +27,12 @@
     Licence: MIT
 	</description>
     <releaseNotes>
-      * Added a TCP Output Channel
+      * Support the Raw metric format
+      * A few more unit tests
+      * Fixed a bug where you couldn't start up if the host could not be resolved
     </releaseNotes>
 	<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	<copyright>Copyright 2013 Luke Venediger</copyright>
-    <tags>statsd statsd.net graphite etsy metrics </tags>
+    <tags>statsd statsd.net graphite etsy metrics</tags>
   </metadata>
 </package>

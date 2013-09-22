@@ -26,5 +26,9 @@ namespace StatsdClient
     /// The number of times each event has been seen.
     /// </summary>
     public const string SET = "s";
+    /// <summary>
+    /// A raw metric that won't be aggregated on the server.
+    /// </summary>
+    public const string RAW = "r"; 
   }
 }

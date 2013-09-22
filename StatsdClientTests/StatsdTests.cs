@@ -138,5 +138,35 @@ namespace StatsdClientTests
       statsd.LogCount("some.stat");
       _outputChannel.VerifyAll();
     }
+
+    [TestMethod]
+    public void LogRaw_WithoutEpoch_Valid()
+    {
+      var statsd = new Statsd("localhost", 12000, prefix : "", outputChannel : _outputChannel.Object);
+      var inputStat = "my.raw.stat:12934|r";
+      _outputChannel.Setup(p => p.Send(It.Is<String>(q => q == inputStat)))
+        .Verifiable();
+      statsd.LogRaw("my.raw.stat", 12934);
+      _outputChannel.VerifyAll();
+    }
+
+    [TestMethod]
+    public void LogRaw_WithEpoch_Valid()
+    {
+      var statsd = new Statsd("localhost", 12000, prefix : "", outputChannel : _outputChannel.Object);
+      var almostAnEpoch = DateTime.Now.Ticks;
+      var inputStat = "my.raw.stat:12934|r|" + almostAnEpoch;
+      _outputChannel.Setup(p => p.Send(It.Is<String>(q => q == inputStat)))
+        .Verifiable();
+      statsd.LogRaw("my.raw.stat", 12934, almostAnEpoch);
+      _outputChannel.VerifyAll();
+    }
+
+    [TestMethod]
+    public void CreateClient_WithInvalidHostName_DoesNotError()
+    {
+      var statsd = new Statsd("nowhere.here.or.anywhere", 12000);
+      statsd.LogCount("test.stat");
+    }
   }
 }

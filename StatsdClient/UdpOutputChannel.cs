@@ -10,6 +10,7 @@ namespace StatsdClient
   internal sealed class UdpOutputChannel : IOutputChannel
   {
     private UdpClient _udpClient;
+    public Socket ClientSocket { get { return _udpClient.Client; } }
 
     public UdpOutputChannel(string host, int port)
     {

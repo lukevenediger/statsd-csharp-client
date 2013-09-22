@@ -3,7 +3,7 @@
 A simple c# client library for [statsd.net](https://github.com/lukevenediger/statsd.net/) and [statsd](https://github.com/etsy/statsd/).
 
 # Features
-* Log counts, timings, gauges and sets
+* Log counts, timings, gauges, sets and raw metrics
 * Has an additional API that uses dynamics to create and submit stats
 * Fault-tolerant client that can be configured to fail silently (with a warning) if misconfigured
 * IStatsdClient interface for easy mocking in unit tests
@@ -12,7 +12,7 @@ A simple c# client library for [statsd.net](https://github.com/lukevenediger/sta
 * Send metrics over a UDP or TCP connection
 
 Coming soon:
-* Support for sets and count sampling
+* Support for count sampling and histograms
 * batch-and-pump - collecting stats and sending them out in a batch at regular intervals
 * Output to an HTTP endpoint
 
@@ -34,6 +34,8 @@ statsd.LogCount( "site.hits" );
 statsd.LogGauge( "site.activeUsers", numActiveUsers );
 // Log a timing
 statsd.LogTiming( "site.pageLoad", 100 /* milliseconds */ );
+// Log a raw metric
+statsd.LogRaw ("already.aggregated", 982, 1885837485 /* epoch timestamp */ );
 ```
 
 You can also wrap your code in a `using` block to measure the latency by using the LogTiming(string) extension method:
@@ -76,7 +78,7 @@ The connection will attempt to reconnect if something goes wrong, and will try t
 * .Net 4.5
 
 ## Authors
-Luke Venediger - lukev@lukev.net
+Luke Venediger - lukev@lukev.net and [@lukevenediger](http://twitter.com/lukevenediger)
 
 ## See Also
 * [statsd.net](https://github.com/lukevenediger/statsd.net/) 

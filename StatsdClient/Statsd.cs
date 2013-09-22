@@ -22,7 +22,7 @@ namespace StatsdClient
     /// <param name="port"></param>
     public Statsd(string host, int port)
     {
-      InitialiseInternal(() => new UdpOutputChannel(host, port), "", true);
+      InitialiseInternal(() => new UdpOutputChannel(host, port), "", false);
     }
 
     /// <summary>
@@ -90,7 +90,7 @@ namespace StatsdClient
         {
           throw;
         }
-        Trace.TraceError("Could not initialise the Statsd client: {2} - falling back to NullOutputChannel.", ex.Message);
+        Trace.TraceError("Could not initialise the Statsd client: {0} - falling back to NullOutputChannel.", ex.Message);
         _outputChannel = new NullOutputChannel();
       }
     }
@@ -147,7 +147,18 @@ namespace StatsdClient
       SendMetric(MetricType.SET, name, _prefix, value);
     }
 
-    private void SendMetric(string metricType, string name, string prefix, int value)
+    /// <summary>
+    /// Log a raw metric that will not get aggregated on the server.
+    /// </summary>
+    /// <param name="name">The metric name.</param>
+    /// <param name="value">The metric value.</param>
+    /// <param name="epoch">(optional) The epoch timestamp. Leave this blank to have the server assign an epoch for you.</param>
+    public void LogRaw(string name, int value, long? epoch = null)
+    {
+      SendMetric(MetricType.RAW, name, String.Empty, value, epoch.HasValue ? epoch.ToString() : (string)null);
+    }
+
+    private void SendMetric(string metricType, string name, string prefix, int value, string postFix = null)
     {
       if (String.IsNullOrEmpty(name))
       {
@@ -157,7 +168,7 @@ namespace StatsdClient
       {
         throw new ArgumentOutOfRangeException("value", value, "Cannot be less than zero.");
       }
-      _outputChannel.Send(PrepareMetric(metricType, name, prefix, value));
+      _outputChannel.Send(PrepareMetric(metricType, name, prefix, value, postFix));
     }
 
     /// <summary>
@@ -167,12 +178,14 @@ namespace StatsdClient
     /// <param name="name"></param>
     /// <param name="prefix"></param>
     /// <param name="value"></param>
+    /// <param name="postFix">A value to append to the end of the line.</param>
     /// <returns>The formatted metric</returns>
-    protected virtual string PrepareMetric(string metricType, string name, string prefix, int value)
+    protected virtual string PrepareMetric(string metricType, string name, string prefix, int value, string postFix = null)
     {
-      return (String.IsNullOrEmpty(prefix) ? name :  (prefix + "." + name)) 
-        + ":" + value 
-        + "|" + metricType;
+      return (String.IsNullOrEmpty(prefix) ? name : (prefix + "." + name))
+        + ":" + value
+        + "|" + metricType
+        + (postFix == null ? String.Empty : "|" + postFix);
     }
   }
 }

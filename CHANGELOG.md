@@ -1,9 +1,9 @@
 # statsd-csharp-client Changelog
 
 ## v1.2.0.0
-* Refactored aggregators to make integration with other backends easier
-* Added support for integrating into librato.com
-* Fixed the HTTP-based listener
+* Support the Raw metric format
+* A few more unit tests
+* Fixed a bug where you couldn't start up if the host could not be resolved
 
 ## v1.1.0.0
 * Added a TCP output channel
