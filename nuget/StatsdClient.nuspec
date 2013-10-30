@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>StatsdCsharpClient</id>
-    <version>1.2.0.0</version>
+    <version>1.2.1.0</version>
     <title>Simple Statsd Client for .Net 3.5, 4.0 and 4.5</title>
     <authors>Luke Venediger</authors>
     <owners>Luke Venediger</owners>
@@ -27,9 +27,9 @@
     Licence: MIT
 	</description>
     <releaseNotes>
-      * Support the Raw metric format
-      * A few more unit tests
-      * Fixed a bug where you couldn't start up if the host could not be resolved
+      * Fixed a bug in the tcp output channel's retry logic
+      * Skip DNS resolution on the UDP client if already an IP Address
+      * Fall back to the Null Output Channel if the client is created with an empty host name.
     </releaseNotes>
 	<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	<copyright>Copyright 2013 Luke Venediger</copyright>

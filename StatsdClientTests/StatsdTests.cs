@@ -168,5 +168,19 @@ namespace StatsdClientTests
       var statsd = new Statsd("nowhere.here.or.anywhere", 12000);
       statsd.LogCount("test.stat");
     }
+
+    [TestMethod]
+    public void CreateClient_WithIPAddress_DoesNotError()
+    {
+      var statsd = new Statsd("127.0.0.1", 12000);
+      statsd.LogCount("test.stat");
+    }
+
+    [TestMethod]
+    public void CreateClient_WithInvalidCharactersInHostName_DoesNotError()
+    {
+      var statsd = new Statsd("@%)(F(FSDLKDEQ423t0-vbdfb", 12000);
+      statsd.LogCount("test.foo");
+    }
   }
 }

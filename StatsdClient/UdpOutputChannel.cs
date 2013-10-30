@@ -12,12 +12,17 @@ namespace StatsdClient
     private UdpClient _udpClient;
     public Socket ClientSocket { get { return _udpClient.Client; } }
 
-    public UdpOutputChannel(string host, int port)
+    public UdpOutputChannel(string hostOrIPAddress, int port)
     {
-      // Convert to ipv4 address
-      var ipv4Address = Dns.GetHostAddresses(host).First(p => p.AddressFamily == AddressFamily.InterNetwork);
+      IPAddress ipAddress;
+      // Is this an IP address already?
+      if (!IPAddress.TryParse(hostOrIPAddress, out ipAddress))
+      {
+        // Convert to ipv4 address
+        ipAddress = Dns.GetHostAddresses(hostOrIPAddress).First(p => p.AddressFamily == AddressFamily.InterNetwork);
+      }
       _udpClient = new UdpClient();
-      _udpClient.Connect(ipv4Address, port);
+      _udpClient.Connect(ipAddress, port);
     }
 
     public void Send(string line)

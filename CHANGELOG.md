@@ -1,5 +1,10 @@
 # statsd-csharp-client Changelog
 
+## v1.2.1.0
+* Fixed a bug in the tcp output channel's retry logic
+* Skip DNS resolution on the UDP client if already an IP Address
+* Fall back to the Null Output Channel if the client is created with an empty host name.
+
 ## v1.2.0.0
 * Support the Raw metric format
 * A few more unit tests
