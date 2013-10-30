@@ -22,7 +22,15 @@ namespace StatsdClient
     /// <param name="port"></param>
     public Statsd(string host, int port)
     {
-      InitialiseInternal(() => new UdpOutputChannel(host, port), "", false);
+      if ( String.IsNullOrEmpty( host ) )
+      {
+        Trace.TraceWarning( "Statsd client initialised with empty host address. Dropping back to NullOutputChannel." );
+        InitialiseInternal( () => new NullOutputChannel(), "", false );
+      }
+      else
+      {
+        InitialiseInternal( () => new UdpOutputChannel( host, port ), "", false );
+      }
     }
 
     /// <summary>

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -24,8 +26,6 @@ namespace StatsdClient
       _retryAttempts = retryAttempts;
       _tcpClient = new TcpClient();
       _reconnectLock = new object();
-
-      RestoreConnection();
     }
 
     public void Send(string line)
@@ -37,20 +37,35 @@ namespace StatsdClient
     {
       try
       {
-        if (!_tcpClient.Connected) { RestoreConnection(); }
-        var bytesToSend = Encoding.UTF8.GetBytes(line + Environment.NewLine);
-        _stream.Write(bytesToSend, 0, bytesToSend.Length);
-      }
-      catch (Exception)
-      {
-        if (attemptsLeft > 0)
+        if ( !_tcpClient.Connected )
         {
-          SendWithRetry(line, attemptsLeft--);
+          RestoreConnection();
+        }
+        var bytesToSend = Encoding.UTF8.GetBytes( line + Environment.NewLine );
+        _stream.Write( bytesToSend, 0, bytesToSend.Length );
+      }
+      catch ( IOException ex )
+      {
+        if ( attemptsLeft > 0 )
+        {
+          SendWithRetry( line, --attemptsLeft );
         }
         else
         {
-          // No more attempts left, so send the exception on its way
-          throw;
+          // No more attempts left, so log it and continue
+          Trace.TraceWarning( "Sending metrics via TCP failed with an IOException: {0}", ex.Message );
+        }
+      }
+      catch ( SocketException ex )
+      {
+        if ( attemptsLeft > 0 )
+        {
+          SendWithRetry( line, --attemptsLeft );
+        }
+        else
+        {
+          // No more attempts left, so log it and continue
+          Trace.TraceWarning( "Sending metrics via TCP failed with a SocketException: {0}, code: {1}", ex.Message, ex.SocketErrorCode.ToString() );
         }
       }
     }
