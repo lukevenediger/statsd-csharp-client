@@ -9,7 +9,6 @@ namespace StatsdClient
   /// <summary>
   /// The statsd client library.
   /// </summary>
-  [DebuggerDisplay("{host}:{port}")]
   public class Statsd : IStatsd
   {
     private string _prefix;
@@ -156,6 +155,28 @@ namespace StatsdClient
     }
 
     /// <summary>
+    /// Log a calendargram metric 
+    /// </summary>
+    /// <param name="name">The metric namespace</param>
+    /// <param name="value">The unique value to be counted in the time period</param>
+    /// <param name="period">The time period, can be one of h,d,dow,w,m</param>
+    public void LogCalendargram(string name, string value, string period)
+    {
+      SendMetric(MetricType.CALENDARGRAM, name, _prefix, value, period);
+    }
+
+    /// <summary>
+    /// Log a calendargram metric 
+    /// </summary>
+    /// <param name="name">The metric namespace</param>
+    /// <param name="value">The unique value to be counted in the time period</param>
+    /// <param name="period">The time period, can be one of h,d,dow,w,m</param>
+    public void LogCalendargram(string name, int value, string period)
+    {
+      SendMetric(MetricType.CALENDARGRAM, name, _prefix, value, period);
+    }
+
+    /// <summary>
     /// Log a raw metric that will not get aggregated on the server.
     /// </summary>
     /// <param name="name">The metric name.</param>
@@ -168,13 +189,19 @@ namespace StatsdClient
 
     private void SendMetric(string metricType, string name, string prefix, int value, string postFix = null)
     {
+      if (value < 0)
+      {
+          Trace.TraceWarning(String.Format("Metric value for {0} was less than zero: {1}. Not sending.", name, value));
+          return;
+      }
+      SendMetric(metricType, name, prefix, value.ToString(), postFix);
+    }
+
+    private void SendMetric(string metricType, string name, string prefix, string value, string postFix = null)
+    {
       if (String.IsNullOrEmpty(name))
       {
         throw new ArgumentNullException("name");
-      }
-      if (value < 0)
-      {
-        throw new ArgumentOutOfRangeException("value", value, "Cannot be less than zero.");
       }
       _outputChannel.Send(PrepareMetric(metricType, name, prefix, value, postFix));
     }
@@ -188,7 +215,7 @@ namespace StatsdClient
     /// <param name="value"></param>
     /// <param name="postFix">A value to append to the end of the line.</param>
     /// <returns>The formatted metric</returns>
-    protected virtual string PrepareMetric(string metricType, string name, string prefix, int value, string postFix = null)
+    protected virtual string PrepareMetric(string metricType, string name, string prefix, string value, string postFix = null)
     {
       return (String.IsNullOrEmpty(prefix) ? name : (prefix + "." + name))
         + ":" + value

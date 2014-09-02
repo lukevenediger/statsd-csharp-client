@@ -3,7 +3,7 @@
 A simple c# client library for [statsd.net](https://github.com/lukevenediger/statsd.net/) and [statsd](https://github.com/etsy/statsd/).
 
 # Features
-* Log counts, timings, gauges, sets and raw metrics
+* Log counts, timings, gauges, sets, calendargrams and raw metrics
 * Has an additional API that uses dynamics to create and submit stats
 * Fault-tolerant client that can be configured to fail silently (with a warning) if misconfigured
 * IStatsdClient interface for easy mocking in unit tests
@@ -36,6 +36,8 @@ statsd.LogGauge( "site.activeUsers", numActiveUsers );
 statsd.LogTiming( "site.pageLoad", 100 /* milliseconds */ );
 // Log a raw metric
 statsd.LogRaw ("already.aggregated", 982, 1885837485 /* epoch timestamp */ );
+// Log a calendargram
+statsd.LogCalendargram("order.completed", "user_13143", CalendargramRetentionPeriod.HOUR);
 ```
 
 You can also wrap your code in a `using` block to measure the latency by using the LogTiming(string) extension method:

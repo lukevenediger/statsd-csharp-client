@@ -29,6 +29,10 @@ namespace StatsdClient
     /// <summary>
     /// A raw metric that won't be aggregated on the server.
     /// </summary>
-    public const string RAW = "r"; 
+    public const string RAW = "r";
+    /// <summary>
+    /// A metric that calculates unique hits per hour, day, day-of-week, week or month
+    /// </summary>
+    public const string CALENDARGRAM = "cg";
   }
 }

@@ -1,5 +1,8 @@
 # statsd-csharp-client Changelog
 
+## v1.3.0.0
+* Added support for Calendargrams
+
 ## v1.2.1.0
 * Fixed a bug in the tcp output channel's retry logic
 * Skip DNS resolution on the UDP client if already an IP Address
