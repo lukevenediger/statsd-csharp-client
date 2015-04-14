@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Threading.Tasks;
 
 namespace StatsdClient
 {
-  /// <summary>
-  /// Contract for sending raw statds lines to the server
-  /// </summary>
-  public interface IOutputChannel
-  {
     /// <summary>
-    /// Sends a line of stats data to the server.
+    /// Contract for sending raw statds lines to the server
     /// </summary>
-    void Send(string line);
-  }
+    public interface IOutputChannel
+    {
+        /// <summary>
+        /// Sends a line of stats data to the server asynchronously.
+        /// </summary>
+        Task SendAsync(string line);
+    }
 }
