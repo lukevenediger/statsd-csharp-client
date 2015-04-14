@@ -1,5 +1,8 @@
 # statsd-csharp-client Changelog
 
+## v1.4.0.0
+* Added async support
+
 ## v1.3.0.0
 * Added support for Calendargrams
 
