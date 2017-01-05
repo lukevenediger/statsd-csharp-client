@@ -57,7 +57,9 @@
     <Compile Include="UdpOutputChannel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="StatsdClient.nuspec" />
+    <None Include="..\nuget\StatsdClient.nuspec">
+      <Link>StatsdClient.nuspec</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

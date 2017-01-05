@@ -1,4 +1,5 @@
 # statsd-csharp-client
+[![Build status](https://ci.appveyor.com/api/projects/status/gjbhn5h0go7xmdn0/branch/master?svg=true)](https://ci.appveyor.com/project/Exceptionless/statsd-csharp-client)
 
 A simple c# client library for [statsd.net](https://github.com/lukevenediger/statsd.net/) and [statsd](https://github.com/etsy/statsd/).
 
