@@ -4,7 +4,7 @@
     {
         public static void Send(this IOutputChannel outputChannel, string line)
         {
-            outputChannel.SendAsync(line).Wait();
+            outputChannel.SendAsync(line).ConfigureAwait(false).GetAwaiter().GetResult();
         }
     }
 }

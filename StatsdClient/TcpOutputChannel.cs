@@ -47,12 +47,12 @@ namespace StatsdClient
             }
             catch (IOException ex)
             {
-                errorMessage = string.Format("Sending metrics via TCP failed with an IOException: {0}", ex.Message);
+                errorMessage = String.Format("Sending metrics via TCP failed with an IOException: {0}", ex.Message);
             }
             catch (SocketException ex)
             {
                 // No more attempts left, so log it and continue
-                errorMessage = string.Format("Sending metrics via TCP failed with a SocketException: {0}, code: {1}", ex.Message, ex.SocketErrorCode);
+                errorMessage = String.Format("Sending metrics via TCP failed with a SocketException: {0}, code: {1}", ex.Message, ex.SocketErrorCode);
             }
 
             if (errorMessage != null)

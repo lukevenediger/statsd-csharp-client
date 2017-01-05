@@ -76,8 +76,6 @@ The connection will attempt to reconnect if something goes wrong, and will try t
 # Project Information
 
 ## Target Runtimes
-* .Net 3.5
-* .Net 4.0
 * .Net 4.5
 
 ## Authors

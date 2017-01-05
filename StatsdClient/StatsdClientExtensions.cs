@@ -10,36 +10,40 @@ namespace StatsdClient
         /// <summary>
         /// Log a counter.
         /// </summary>
+        /// <param name="client">The statsd client instance.</param>
         /// <param name="name">The metric name.</param>
         /// <param name="count">The counter value (defaults to 1).</param>
         public static void LogCount(this IStatsd client, string name, int count = 1)
         {
-            client.LogCountAsync(name, count).Wait();
+            client.LogCountAsync(name, count).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         /// <summary>
         /// Log a timing / latency
         /// </summary>
+        /// <param name="client">The statsd client instance.</param>
         /// <param name="name">The metric name.</param>
         /// <param name="milliseconds">The duration, in milliseconds, for this metric.</param>
         public static void LogTiming(this IStatsd client, string name, long milliseconds)
         {
-            client.LogTimingAsync(name, milliseconds).Wait();
+            client.LogTimingAsync(name, milliseconds).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         /// <summary>
         /// Log a gauge.
         /// </summary>
+        /// <param name="client">The statsd client instance.</param>
         /// <param name="name">The metric name</param>
         /// <param name="value">The value for this gauge</param>
         public static void LogGauge(this IStatsd client, string name, int value)
         {
-            client.LogGaugeAsync(name, value).Wait();
+            client.LogGaugeAsync(name, value).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         /// <summary>
         /// Log to a set
         /// </summary>
+        /// <param name="client">The statsd client instance.</param>
         /// <param name="name">The metric name.</param>
         /// <param name="value">The value to log.</param>
         /// <remarks>
@@ -47,40 +51,43 @@ namespace StatsdClient
         /// </remarks>
         public static void LogSet(this IStatsd client, string name, int value)
         {
-            client.LogSetAsync(name, value).Wait();
+            client.LogSetAsync(name, value).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         /// <summary>
         /// Log a raw metric that will not get aggregated on the server.
         /// </summary>
+        /// <param name="client">The statsd client instance.</param>
         /// <param name="name">The metric name.</param>
         /// <param name="value">The metric value.</param>
         /// <param name="epoch">(optional) The epoch timestamp. Leave this blank to have the server assign an epoch for you.</param>
         public static void LogRaw(this IStatsd client, string name, int value, long? epoch = null)
         {
-            client.LogRawAsync(name, value, epoch).Wait();
+            client.LogRawAsync(name, value, epoch).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         /// <summary>
         /// Log a calendargram metric
         /// </summary>
+        /// <param name="client">The statsd client instance.</param>
         /// <param name="name">The metric namespace</param>
         /// <param name="value">The unique value to be counted in the time period</param>
         /// <param name="period">The time period, can be one of h,d,dow,w,m</param>
         public static void LogCalendargram(this IStatsd client, string name, string value, string period)
         {
-            client.LogCalendargramAsync(name, value, period).Wait();
+            client.LogCalendargramAsync(name, value, period).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         /// <summary>
         /// Log a calendargram metric
         /// </summary>
+        /// <param name="client">The statsd client instance.</param>
         /// <param name="name">The metric namespace</param>
         /// <param name="value">The unique value to be counted in the time period</param>
         /// <param name="period">The time period, can be one of h,d,dow,w,m</param>
         public static void LogCalendargram(this IStatsd client, string name, long value, string period)
         {
-            client.LogCalendargramAsync(name, value, period).Wait();
+            client.LogCalendargramAsync(name, value, period).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         /// <summary>

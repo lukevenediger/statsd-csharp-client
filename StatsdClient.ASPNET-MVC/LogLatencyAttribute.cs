@@ -16,7 +16,7 @@ namespace StatsdClient.ASPNET_MVC
 
       public LogLatencyAttribute(string name)
       {
-        if (string.IsNullOrEmpty(name))
+        if (String.IsNullOrEmpty(name))
         {
           throw new ArgumentException("Name cannot be null or empty.", "name");
         }

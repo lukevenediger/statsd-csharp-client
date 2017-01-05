@@ -3,7 +3,7 @@
   <metadata>
     <id>StatsdCsharpClient</id>
     <version>$version$</version>
-    <title>Simple Statsd Client for .Net 3.5, 4.0 and 4.5</title>
+    <title>Simple Statsd Client for .Net 4.5</title>
     <authors>Luke Venediger</authors>
     <owners>Luke Venediger</owners>
     <projectUrl>https://github.com/lukevenediger/statsd-csharp-client/</projectUrl>
@@ -20,7 +20,7 @@
     * Supports a user-defined prefix to prepend to every metric
     * Outputs to UDP or TCP
 
-    .Net 4.0 and 4.5 Users:
+    .Net 4.5 Users:
     * Use the StatsdExtensions to define metrics without having to manipulate strings
     * The dynamic stats builder interface provides a cleaner alternative to creating and logging metrics
 
