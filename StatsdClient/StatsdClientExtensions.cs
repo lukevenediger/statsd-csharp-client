@@ -41,6 +41,26 @@ namespace StatsdClient
         }
 
         /// <summary>
+        /// Log a gauge.
+        /// </summary>
+        /// <param name="client">The statsd client instance.</param>
+        /// <param name="name">The metric name</param>
+        /// <param name="value">The value for this gauge</param>
+        public static void LogGauge(this IStatsd client, string name, double value) {
+            client.LogGaugeAsync(name, value).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// Log a gauge.
+        /// </summary>
+        /// <param name="client">The statsd client instance.</param>
+        /// <param name="name">The metric name</param>
+        /// <param name="value">The value for this gauge</param>
+        public static void LogGauge(this IStatsd client, string name, decimal value) {
+            client.LogGaugeAsync(name, value).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
         /// Log to a set
         /// </summary>
         /// <param name="client">The statsd client instance.</param>

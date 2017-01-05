@@ -14,8 +14,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatsdClient", "StatsdClien
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatsdClientTests", "StatsdClientTests\StatsdClientTests.csproj", "{15A2A9A7-D5A0-499D-A74B-2A06BD13B954}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatsdClient.ASPNET-MVC", "StatsdClient.ASPNET-MVC\StatsdClient.ASPNET-MVC.csproj", "{4C01CFEE-CE8D-447F-9919-08FF7C548BF8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,10 +28,6 @@ Global
 		{15A2A9A7-D5A0-499D-A74B-2A06BD13B954}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15A2A9A7-D5A0-499D-A74B-2A06BD13B954}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15A2A9A7-D5A0-499D-A74B-2A06BD13B954}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4C01CFEE-CE8D-447F-9919-08FF7C548BF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C01CFEE-CE8D-447F-9919-08FF7C548BF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C01CFEE-CE8D-447F-9919-08FF7C548BF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C01CFEE-CE8D-447F-9919-08FF7C548BF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

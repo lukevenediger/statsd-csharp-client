@@ -18,6 +18,16 @@ namespace StatsdClient
         Task LogGaugeAsync(string name, long value);
 
         /// <summary>
+        /// Log a gauge value
+        /// </summary>
+        Task LogGaugeAsync(string name, double value);
+
+        /// <summary>
+        /// Log a gauge value
+        /// </summary>
+        Task LogGaugeAsync(string name, decimal value);
+
+        /// <summary>
         /// Log a latency / Timing
         /// </summary>
         Task LogTimingAsync(string name, long milliseconds);
