@@ -3,7 +3,7 @@
   <metadata>
     <id>StatsdCsharpClient</id>
     <version>$version$</version>
-    <title>Simple Statsd Client for .Net 4.5</title>
+    <title>Simple StatsD Client</title>
     <authors>Luke Venediger</authors>
     <owners>Luke Venediger</owners>
     <projectUrl>https://github.com/lukevenediger/statsd-csharp-client/</projectUrl>

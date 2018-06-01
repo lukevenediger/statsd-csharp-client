@@ -1,5 +1,8 @@
 # statsd-csharp-client Changelog
 
+## v1.5.0.0
+* Targeting .NET Standard 2.0
+
 ## v1.4.0.0
 * Added async support
 
